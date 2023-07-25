@@ -34,19 +34,19 @@ public class CampeonatoResource {
 	@PostMapping
 	public ResponseEntity<CampeonatoDTO> insert(@RequestBody CampeonatoDTO dto) {
 		dto = service.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getid_campeonato()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getIdCampeonato()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}	
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CampeonatoDTO> update(@PathVariable String id, @RequestBody CampeonatoDTO dto) {
-		dto = service.update(id, dto);
+	public ResponseEntity<CampeonatoDTO> update(@PathVariable(value = "id") Long idCampeonato, @RequestBody CampeonatoDTO dto) {
+		dto = service.update(idCampeonato, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}") 
-	public ResponseEntity<CampeonatoDTO> delete(@PathVariable String id) { 
-		service.delete(id);
+	public ResponseEntity<CampeonatoDTO> delete(@PathVariable(value = "id") Long idCampeonato) { 
+		service.delete(idCampeonato);
 		return ResponseEntity.noContent().build(); 
 	}
 }

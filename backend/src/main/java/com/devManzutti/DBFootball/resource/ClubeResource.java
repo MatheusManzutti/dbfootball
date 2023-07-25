@@ -34,18 +34,18 @@ public class ClubeResource {
 	@PostMapping
 	public ResponseEntity<ClubeDTO> insert(@RequestBody ClubeDTO dto) {
 		dto = service.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId_clube()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getIdClube()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}	
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ClubeDTO> update(@PathVariable String id, @RequestBody ClubeDTO dto) {
+	public ResponseEntity<ClubeDTO> update(@PathVariable Long id, @RequestBody ClubeDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}") 
-	public ResponseEntity<ClubeDTO> delete(@PathVariable String id) { 
+	public ResponseEntity<ClubeDTO> delete(@PathVariable Long id) { 
 		service.delete(id);
 		return ResponseEntity.noContent().build(); 
 	}

@@ -6,43 +6,57 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_campeonato")
-public class Campeonato implements Serializable{
+public class Campeonato implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	private String id_campeonato;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idCampeonato;
 	
+	private String campeonato;
+
 	@OneToMany(mappedBy = "campeonato")
 	List<OrganizaCampeonato> organizaCampeonato = new ArrayList<>();
-	
+
 	public Campeonato() {
 	}
 
-	public Campeonato(String id_campeonato) {
-		this.id_campeonato = id_campeonato;
-	}
-
-	public String getId_campeonato() {
-		return id_campeonato;
-	}
-
-	public void setId_campeonato(String id_campeonato) {
-		this.id_campeonato = id_campeonato;
+	public Campeonato(Long idCampeonato, String campeonato) {
+		this.idCampeonato = idCampeonato;
+		this.campeonato = campeonato;
 	}
 	
+	public Long getIdCampeonato() {
+		return idCampeonato;
+	}
+
+	public void setIdCampeonato(Long idCampeonato) {
+		this.idCampeonato = idCampeonato;
+	}
+
+	public String getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(String campeonato) {
+		this.campeonato = campeonato;
+	}
+
 	public List<OrganizaCampeonato> getOrganizaCampeonato() {
 		return organizaCampeonato;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_campeonato);
+		return Objects.hash(idCampeonato);
 	}
 
 	@Override
@@ -54,6 +68,6 @@ public class Campeonato implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Campeonato other = (Campeonato) obj;
-		return Objects.equals(id_campeonato, other.id_campeonato);
+		return Objects.equals(idCampeonato, other.idCampeonato);
 	}
 }

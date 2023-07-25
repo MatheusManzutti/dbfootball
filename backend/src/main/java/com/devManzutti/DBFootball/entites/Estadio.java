@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,7 +18,10 @@ public class Estadio implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String id_estadio;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idEstadio;
+	
+	private String estadio;
 	
 	@OneToMany(mappedBy = "estadio")
 	List<OrganizaCampeonato> organizaCampeonato = new ArrayList<>();
@@ -24,16 +29,25 @@ public class Estadio implements Serializable{
 	public Estadio() {
 	}
 
-	public Estadio(String id_estadio) {
-		this.id_estadio = id_estadio;
+	public Estadio(Long idEstadio, String estadio) {
+		this.idEstadio = idEstadio;
+		this.estadio = estadio;
 	}
 
-	public String getId_estadio() {
-		return id_estadio;
+	public Long getIdEstadio() {
+		return idEstadio;
 	}
 
-	public void setId_estadio(String id_estadio) {
-		this.id_estadio = id_estadio;
+	public void setIdEstadio(Long idEstadio) {
+		this.idEstadio = idEstadio;
+	}
+
+	public String getEstadio() {
+		return estadio;
+	}
+
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
 	}
 
 	public List<OrganizaCampeonato> getOrganizaCampeonato() {
@@ -42,7 +56,7 @@ public class Estadio implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_estadio);
+		return Objects.hash(idEstadio);
 	}
 
 	@Override
@@ -54,6 +68,6 @@ public class Estadio implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Estadio other = (Estadio) obj;
-		return Objects.equals(id_estadio, other.id_estadio);
+		return Objects.equals(idEstadio, other.idEstadio);
 	}
 }

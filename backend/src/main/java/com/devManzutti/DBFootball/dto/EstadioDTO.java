@@ -7,25 +7,35 @@ import com.devManzutti.DBFootball.entites.Estadio;
 public class EstadioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String id_estadio;
+	private Long idEstadio;
+	private String estadio;
 	
 	public EstadioDTO() {
 	}
 
-	public EstadioDTO(String id_estadio) {
-		this.id_estadio = id_estadio;
+	public EstadioDTO(Long idEstadio, String estadio) {
+		this.idEstadio = idEstadio;
+		this.estadio = estadio;
 	}
 	
 	public EstadioDTO(Estadio entity) {
-		this.id_estadio = entity.getId_estadio();
+		this.idEstadio = entity.getIdEstadio();
+		this.estadio = entity.getEstadio();
 	}
 
-	public String getid_estadio() {
-		return id_estadio;
+	public Long getIdEstadio() {
+		return idEstadio;
 	}
 
-	public void setid_estadio(String id_estadio) {
-		this.id_estadio = id_estadio;
+	public void setIdEstadio(Long idEstadio) {
+		this.idEstadio = idEstadio;
 	}
 
+	public String getEstadio() {
+		return estadio;
+	}
+
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
+	}
 }

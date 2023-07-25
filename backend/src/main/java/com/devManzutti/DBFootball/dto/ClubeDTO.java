@@ -7,24 +7,35 @@ import com.devManzutti.DBFootball.entites.Clube;
 public class ClubeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String id_clube;
+	private Long idClube;
+	private String clube;
 	
 	public ClubeDTO() {
 	}
 
-	public ClubeDTO(String id_clube) {
-		this.id_clube = id_clube;
+	public ClubeDTO(Long idClube, String clube) {
+		this.idClube = idClube;
+		this.clube = clube;
 	}
 	
 	public ClubeDTO(Clube entity) {
-		this.id_clube = entity.getId_clube();
+		this.idClube = entity.getIdClube();
+		this.clube = entity.getClube();
 	}
 
-	public String getId_clube() {
-		return id_clube;
+	public Long getIdClube() {
+		return idClube;
 	}
 
-	public void setId_clube(String id_clube) {
-		this.id_clube = id_clube;
+	public void setId(Long idClube) {
+		this.idClube = idClube;
+	}
+
+	public String getClube() {
+		return clube;
+	}
+
+	public void setClube(String clube) {
+		this.clube = clube;
 	}
 }

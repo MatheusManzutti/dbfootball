@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,27 +18,40 @@ public class Clube implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String id_clube;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idClube;
+	
+	private String clube;
+	
+	public Clube() {
+	}
 	
 	@OneToMany(mappedBy = "clube1")
 	List<OrganizaCampeonato> organizaCampeonato1 = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "clube2")
 	List<OrganizaCampeonato> organizaCampeonato2 = new ArrayList<>();
+
+	public Clube(Long idClube, String clube) {
+		super();
+		this.idClube = idClube;
+		this.clube = clube;
+	}
 	
-	public Clube() {
+	public Long getIdClube() {
+		return idClube;
 	}
 
-	public Clube(String id_clube) {
-		this.id_clube = id_clube;
+	public void setIdClube(Long idClube) {
+		this.idClube = idClube;
 	}
 
-	public String getId_clube() {
-		return id_clube;
+	public String getClube() {
+		return clube;
 	}
 
-	public void setId_clube(String id_clube) {
-		this.id_clube = id_clube;
+	public void setClube(String clube) {
+		this.clube = clube;
 	}
 
 	public List<OrganizaCampeonato> getClube1() {
@@ -49,7 +64,7 @@ public class Clube implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_clube);
+		return Objects.hash(idClube);
 	}
 
 	@Override
@@ -61,6 +76,7 @@ public class Clube implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Clube other = (Clube) obj;
-		return Objects.equals(id_clube, other.id_clube);
+		return Objects.equals(idClube, other.idClube);
 	}
 }
+

@@ -27,22 +27,25 @@ public class EstadioService {
 	public EstadioDTO insert(EstadioDTO dto) {
 		Estadio entity = new Estadio();
 		copyDTOToEntity(dto, entity);
+		entity.setEstadio(dto.getEstadio());
+		entity = repository.save(entity);
 		return new EstadioDTO(entity);
 	}
 	
 	@Transactional
-	public EstadioDTO update(String id, EstadioDTO dto) {
-		Estadio entity = repository.getReferenceById(id);
-		copyDTOToEntity(dto, entity);
+	public EstadioDTO update(Long idEstadio, EstadioDTO dto) {
+		Estadio entity = repository.getReferenceById(idEstadio);
+		entity.setEstadio(dto.getEstadio());
+		entity = repository.save(entity);
 		return new EstadioDTO(entity);
 	}
 	
-	public void delete(String id) {
-		repository.deleteById(id);
+	public void delete(Long idEstadio) {
+		repository.deleteById(idEstadio);
 	}
 	
 	private void copyDTOToEntity(EstadioDTO dto, Estadio entity) {		
-		entity.setId_estadio(dto.getid_estadio());
+		entity.setIdEstadio(dto.getIdEstadio());
 		entity = repository.save(entity);
 	}
 }

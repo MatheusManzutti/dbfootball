@@ -27,22 +27,25 @@ public class CampeonatoService {
 	public CampeonatoDTO insert(CampeonatoDTO dto) {
 		Campeonato entity = new Campeonato();
 		copyDTOToEntity(dto, entity);
+		entity.setCampeonato(dto.getCampeonato());
+		entity = repository.save(entity);
 		return new CampeonatoDTO(entity);
 	}
 	
 	@Transactional
-	public CampeonatoDTO update(String id, CampeonatoDTO dto) {
-		Campeonato entity = repository.getReferenceById(id);
-		copyDTOToEntity(dto, entity);
+	public CampeonatoDTO update(Long idCampeonato, CampeonatoDTO dto) {
+		Campeonato entity = repository.getReferenceById(idCampeonato);
+		entity.setCampeonato(dto.getCampeonato());
+		entity = repository.save(entity);
 		return new CampeonatoDTO(entity);
 	}
 	
-	public void delete(String id) {
-		repository.deleteById(id);
+	public void delete(Long idCampeonato) {
+		repository.deleteById(idCampeonato);
 	}
 	
 	private void copyDTOToEntity(CampeonatoDTO dto, Campeonato entity) {		
-		entity.setId_campeonato(dto.getid_campeonato());
+		entity.setIdCampeonato(dto.getIdCampeonato());
 		entity = repository.save(entity);
 	}
 }

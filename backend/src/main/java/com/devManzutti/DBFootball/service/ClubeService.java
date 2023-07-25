@@ -27,22 +27,25 @@ public class ClubeService {
 	public ClubeDTO insert(ClubeDTO dto) {
 		Clube entity = new Clube();
 		copyDTOToEntity(dto, entity);
+		entity.setClube(dto.getClube());
+		entity = repository.save(entity);
 		return new ClubeDTO(entity);
 	}
 	
 	@Transactional
-	public ClubeDTO update(String id, ClubeDTO dto) {
-		Clube entity = repository.getReferenceById(id);
-		copyDTOToEntity(dto, entity);
+	public ClubeDTO update(Long idClube, ClubeDTO dto) {
+		Clube entity = repository.getReferenceById(idClube);
+		entity.setClube(dto.getClube());
+		entity = repository.save(entity);
 		return new ClubeDTO(entity);
 	}
 	
-	public void delete(String id) {
-		repository.deleteById(id);
+	public void delete(Long idClube) {
+		repository.deleteById(idClube);
 	}
 	
 	private void copyDTOToEntity(ClubeDTO dto, Clube entity) {		
-		entity.setId_clube(dto.getId_clube());
+		entity.setIdClube(dto.getIdClube());
 		entity = repository.save(entity);
 	}
 }
