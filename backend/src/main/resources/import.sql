@@ -13,7 +13,13 @@ INSERT INTO tb_estadio (estadio) VALUES ('Neo Quimica Arena');
 INSERT INTO tb_estadio (estadio) VALUES ('Morumbi');
 INSERT INTO tb_estadio (estadio) VALUES ('Maracana');
 
-INSERT INTO tb_partida (id_Campeonato, id_Estadio, id_clube1, id_clube2, data_Hora) VALUES (1, 1, 1, 2, TIMESTAMP WITH TIME ZONE '2023-03-19T19:00:00Z');
-INSERT INTO tb_partida (id_Campeonato, id_Estadio, id_clube1, id_clube2, data_Hora) VALUES (2, 4, 4, 5, TIMESTAMP WITH TIME ZONE '2023-03-22T00:00:00Z');
-INSERT INTO tb_partida (id_Campeonato, id_Estadio, id_clube1, id_clube2, data_Hora) VALUES (1, 3, 1, 3, TIMESTAMP WITH TIME ZONE '2023-03-26T19:00:00Z');
-INSERT INTO tb_partida (id_Campeonato, id_Estadio, id_clube1, id_clube2, data_Hora) VALUES (2, 4, 4, 6, TIMESTAMP WITH TIME ZONE '2023-04-05T00:00:00Z');
+-- Supondo que os IDs dos registros das tabelas tb_campeonato, tb_clube e tb_estadio estejam corretos
+INSERT INTO tb_partida (campeonato, estadio, clube1, clube2, data_Hora)
+VALUES (1, 1, 1, 2, TIMESTAMP '2023-03-19T19:00:00Z');
+INSERT INTO tb_partida (campeonato, estadio, clube1, clube2, data_Hora)
+VALUES (2, 4, 4, 5, TIMESTAMP '2023-03-22T00:00:00Z');
+INSERT INTO tb_partida (campeonato, estadio, clube1, clube2, data_Hora)
+VALUES (1, 3, 1, 3, TIMESTAMP '2023-03-26T19:00:00Z');
+INSERT INTO tb_partida (campeonato, estadio, clube1, clube2, data_Hora)
+VALUES (2, 4, 4, 6, TIMESTAMP '2023-04-05T00:00:00Z');
+

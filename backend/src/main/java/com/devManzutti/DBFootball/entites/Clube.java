@@ -33,7 +33,6 @@ public class Clube implements Serializable{
 	List<OrganizaCampeonato> organizaCampeonato2 = new ArrayList<>();
 
 	public Clube(Long idClube, String clube) {
-		super();
 		this.idClube = idClube;
 		this.clube = clube;
 	}

@@ -20,22 +20,22 @@ public class OrganizaCampeonato implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_organizaCampeonato;
+	private Long idOrganizaCampeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_campeonato")
+	@JoinColumn(name = "idCampeonato")
 	private Campeonato campeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_estadio")
+	@JoinColumn(name = "idEstadio")
 	private Estadio estadio;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_clube1")
+	@JoinColumn(name = "idClube1")
 	private Clube clube1;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_clube2")
+	@JoinColumn(name = "idClube2")
 	private Clube clube2;
 		
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
@@ -44,10 +44,9 @@ public class OrganizaCampeonato implements Serializable{
 	public OrganizaCampeonato() {
 	}
 
-	public OrganizaCampeonato(Long id_organizaCampeonato, Campeonato campeonato, Estadio estadio, Clube clube1,
+	public OrganizaCampeonato(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio, Clube clube1,
 			Clube clube2, Instant dataHora) {
-		super();
-		this.id_organizaCampeonato = id_organizaCampeonato;
+		this.idOrganizaCampeonato = idOrganizaCampeonato;
 		this.campeonato = campeonato;
 		this.estadio = estadio;
 		this.clube1 = clube1;
@@ -55,12 +54,12 @@ public class OrganizaCampeonato implements Serializable{
 		this.dataHora = dataHora;
 	}
 
-	public Long getId_organizaCampeonato() {
-		return id_organizaCampeonato;
+	public Long getIdOrganizaCampeonato() {
+		return idOrganizaCampeonato;
 	}
 
-	public void setId_organizaCampeonato(Long id_organizaCampeonato) {
-		this.id_organizaCampeonato = id_organizaCampeonato;
+	public void setIdOrganizaCampeonato(Long idOrganizaCampeonato) {
+		this.idOrganizaCampeonato = idOrganizaCampeonato;
 	}
 
 	public Campeonato getCampeonato() {
@@ -93,19 +92,19 @@ public class OrganizaCampeonato implements Serializable{
 
 	public void setClube2(Clube clube2) {
 		this.clube2 = clube2;
-	}	
-	
-	public Instant getdataHora() {
+	}
+
+	public Instant getDataHora() {
 		return dataHora;
 	}
 
-	public void setdataHora(Instant dataHora) {
+	public void setDataHora(Instant dataHora) {
 		this.dataHora = dataHora;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id_organizaCampeonato);
+		return Objects.hash(idOrganizaCampeonato);
 	}
 
 	@Override
@@ -117,6 +116,6 @@ public class OrganizaCampeonato implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		OrganizaCampeonato other = (OrganizaCampeonato) obj;
-		return Objects.equals(id_organizaCampeonato, other.id_organizaCampeonato);
+		return Objects.equals(idOrganizaCampeonato, other.idOrganizaCampeonato);
 	}
 }
