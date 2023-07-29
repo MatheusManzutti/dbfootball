@@ -23,19 +23,19 @@ public class OrganizaCampeonato implements Serializable{
 	private Long idOrganizaCampeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "idCampeonato")
+	@JoinColumn(name = "campeonato_id")
 	private Campeonato campeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "idEstadio")
+	@JoinColumn(name = "estadio_id")
 	private Estadio estadio;
 	
 	@ManyToOne
-	@JoinColumn(name = "idClube1")
+	@JoinColumn(name = "clube1_id")
 	private Clube clube1;
 	
 	@ManyToOne
-	@JoinColumn(name = "idClube2")
+	@JoinColumn(name = "clube2_id")
 	private Clube clube2;
 		
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

@@ -12,10 +12,10 @@ public class OrganizaCampeonatoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long idOrganizaCampeonato;
-	private Campeonato Campeonato;
-	private Estadio Estadio;
-	private Clube Clube1;
-	private Clube Clube2;
+	private Campeonato campeonato;
+	private Estadio estadio;
+	private Clube clube1;
+	private Clube clube2;
 	private Instant dataHora;
 	
 	public OrganizaCampeonatoDTO() {
@@ -24,19 +24,19 @@ public class OrganizaCampeonatoDTO implements Serializable {
 	public OrganizaCampeonatoDTO(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio,
 			Clube clube1, Clube clube2, Instant dataHora) {
 		this.idOrganizaCampeonato = idOrganizaCampeonato;
-		this.Campeonato = campeonato;
-		this.Estadio = estadio;
-		this.Clube1 = clube1;
-		this.Clube2 = clube2;
+		this.campeonato = campeonato;
+		this.estadio = estadio;
+		this.clube1 = clube1;
+		this.clube2 = clube2;
 		this.dataHora = dataHora;
 	}
 
 	public OrganizaCampeonatoDTO(OrganizaCampeonato entity) {
 		this.idOrganizaCampeonato = entity.getIdOrganizaCampeonato();
-		this.Campeonato = entity.getCampeonato();
-		this.Estadio = entity.getEstadio();
-		this.Clube1 = entity.getClube2();
-		this.Clube2 = entity.getClube1();
+		this.campeonato = entity.getCampeonato();
+		this.estadio = entity.getEstadio();
+		this.clube1 = entity.getClube2();
+		this.clube2 = entity.getClube1();
 		this.dataHora = entity.getDataHora();
 	}
 
@@ -49,35 +49,35 @@ public class OrganizaCampeonatoDTO implements Serializable {
 	}
 
 	public Campeonato getCampeonato() {
-		return Campeonato;
+		return campeonato;
 	}
 
 	public void setCampeonato(Campeonato campeonato) {
-		Campeonato = campeonato;
+		this.campeonato = campeonato;
 	}
 
 	public Estadio getEstadio() {
-		return Estadio;
+		return estadio;
 	}
 
 	public void setEstadio(Estadio estadio) {
-		Estadio = estadio;
+		this.estadio = estadio;
 	}
 
 	public Clube getClube1() {
-		return Clube1;
+		return clube1;
 	}
 
 	public void setClube1(Clube clube1) {
-		Clube1 = clube1;
+		this.clube1 = clube1;
 	}
 
 	public Clube getClube2() {
-		return Clube2;
+		return clube2;
 	}
 
 	public void setClube2(Clube clube2) {
-		Clube2 = clube2;
+		this.clube2 = clube2;
 	}
 
 	public Instant getDataHora() {
