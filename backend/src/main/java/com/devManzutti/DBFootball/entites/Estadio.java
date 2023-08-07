@@ -1,15 +1,12 @@
 package com.devManzutti.DBFootball.entites;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,9 +19,6 @@ public class Estadio implements Serializable{
 	private Long idEstadio;
 	
 	private String estadio;
-	
-	@OneToMany(mappedBy = "estadio")
-	List<OrganizaCampeonato> organizaCampeonato = new ArrayList<>();
 	
 	public Estadio() {
 	}
@@ -48,10 +42,6 @@ public class Estadio implements Serializable{
 
 	public void setEstadio(String estadio) {
 		this.estadio = estadio;
-	}
-
-	public List<OrganizaCampeonato> getOrganizaCampeonato() {
-		return organizaCampeonato;
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_partida")
+@Table(name = "tb_OrganizaCampeonato")
 public class OrganizaCampeonato implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -23,20 +23,20 @@ public class OrganizaCampeonato implements Serializable{
 	private Long idOrganizaCampeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "campeonato_id")
+	@JoinColumn(name = "id_Campeonato")
 	private Campeonato campeonato;
 	
 	@ManyToOne
-	@JoinColumn(name = "estadio_id")
+	@JoinColumn(name = "id_Estadio")
 	private Estadio estadio;
 	
 	@ManyToOne
-	@JoinColumn(name = "clube1_id")
-	private Clube clube1;
+	@JoinColumn(name = "id_Time_Casa")
+	private Clube timeCasa;
 	
 	@ManyToOne
-	@JoinColumn(name = "clube2_id")
-	private Clube clube2;
+	@JoinColumn(name = "id_Time_Visitante")
+	private Clube timeVisitante;
 		
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dataHora;
@@ -44,13 +44,14 @@ public class OrganizaCampeonato implements Serializable{
 	public OrganizaCampeonato() {
 	}
 
-	public OrganizaCampeonato(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio, Clube clube1,
-			Clube clube2, Instant dataHora) {
+	public OrganizaCampeonato(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio, Clube timeCasa,
+			Clube timeVisitante, Instant dataHora) {
+		super();
 		this.idOrganizaCampeonato = idOrganizaCampeonato;
 		this.campeonato = campeonato;
 		this.estadio = estadio;
-		this.clube1 = clube1;
-		this.clube2 = clube2;
+		this.timeCasa = timeCasa;
+		this.timeVisitante = timeVisitante;
 		this.dataHora = dataHora;
 	}
 
@@ -78,20 +79,20 @@ public class OrganizaCampeonato implements Serializable{
 		this.estadio = estadio;
 	}
 
-	public Clube getClube1() {
-		return clube1;
+	public Clube getTimeCasa() {
+		return timeCasa;
 	}
 
-	public void setClube1(Clube clube1) {
-		this.clube1 = clube1;
+	public void setTimeCasa(Clube timeCasa) {
+		this.timeCasa = timeCasa;
 	}
 
-	public Clube getClube2() {
-		return clube2;
+	public Clube getTimeVisitante() {
+		return timeVisitante;
 	}
 
-	public void setClube2(Clube clube2) {
-		this.clube2 = clube2;
+	public void setTimeVisitante(Clube timeVisitante) {
+		this.timeVisitante = timeVisitante;
 	}
 
 	public Instant getDataHora() {
