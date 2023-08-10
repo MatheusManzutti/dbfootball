@@ -46,7 +46,6 @@ public class OrganizaCampeonato implements Serializable{
 
 	public OrganizaCampeonato(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio, Clube timeCasa,
 			Clube timeVisitante, Instant dataHora) {
-		super();
 		this.idOrganizaCampeonato = idOrganizaCampeonato;
 		this.campeonato = campeonato;
 		this.estadio = estadio;

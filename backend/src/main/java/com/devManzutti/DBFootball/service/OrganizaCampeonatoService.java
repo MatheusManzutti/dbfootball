@@ -28,6 +28,10 @@ public class OrganizaCampeonatoService {
 		OrganizaCampeonato entity = new OrganizaCampeonato();
 		copyDTOToEntity(dto, entity);
 		entity.setCampeonato(dto.getCampeonato());
+		entity.setEstadio(dto.getEstadio());
+		entity.setTimeCasa(dto.getTimeCasa());
+		entity.setTimeVisitante(dto.getTimeVisitante());
+		entity.setDataHora(dto.getDataHora());
 		entity = repository.save(entity);
 		return new OrganizaCampeonatoDTO(entity);
 	}
@@ -36,6 +40,10 @@ public class OrganizaCampeonatoService {
 	public OrganizaCampeonatoDTO update(Long idOrganizaCampeonato, OrganizaCampeonatoDTO dto) {
 		OrganizaCampeonato entity = repository.getReferenceById(idOrganizaCampeonato);
 		entity.setCampeonato(dto.getCampeonato());
+		entity.setEstadio(dto.getEstadio());
+		entity.setTimeCasa(dto.getTimeCasa());
+		entity.setTimeVisitante(dto.getTimeVisitante());
+		entity.setDataHora(dto.getDataHora());
 		entity = repository.save(entity);
 		return new OrganizaCampeonatoDTO(entity);
 	}
@@ -48,5 +56,4 @@ public class OrganizaCampeonatoService {
 		entity.setIdOrganizaCampeonato(dto.getIdOrganizaCampeonato());
 		entity = repository.save(entity);
 	}
-
 }

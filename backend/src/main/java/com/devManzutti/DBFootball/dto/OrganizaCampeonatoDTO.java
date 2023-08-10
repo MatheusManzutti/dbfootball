@@ -22,7 +22,6 @@ public class OrganizaCampeonatoDTO implements Serializable {
 	}
 	public OrganizaCampeonatoDTO(Long idOrganizaCampeonato, Campeonato campeonato, Estadio estadio, Clube timeCasa,
 			Clube timeVisitante, Instant dataHora) {
-		super();
 		this.idOrganizaCampeonato = idOrganizaCampeonato;
 		this.campeonato = campeonato;
 		this.estadio = estadio;
