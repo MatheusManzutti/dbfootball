@@ -1,15 +1,18 @@
 package com.devManzutti.DBFootball.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devManzutti.DBFootball.dto.OrganizaCampeonatoDTO;
 import com.devManzutti.DBFootball.entites.OrganizaCampeonato;
 import com.devManzutti.DBFootball.repository.OrganizaCampeonatoRepository;
+import com.devManzutti.DBFootball.service.exceptions.DatabaseException;
+import com.devManzutti.DBFootball.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class OrganizaCampeonatoService {
@@ -18,42 +21,34 @@ public class OrganizaCampeonatoService {
 	private OrganizaCampeonatoRepository repository;
 	
 	@Transactional(readOnly = true)
-	public List<OrganizaCampeonatoDTO> findAll() {
-		List<OrganizaCampeonato> list = repository.findAll();
-		return list.stream().map(x -> new OrganizaCampeonatoDTO(x)).collect(Collectors.toList());
+	public Page<OrganizaCampeonatoDTO> findAllPaged(Pageable pageable) {
+		Page<OrganizaCampeonato> list = repository.findAll(pageable);
+		return list.map(x -> new OrganizaCampeonatoDTO(x));
 	}
 	
 	@Transactional
 	public OrganizaCampeonatoDTO insert(OrganizaCampeonatoDTO dto) {
 		OrganizaCampeonato entity = new OrganizaCampeonato();
-		copyDTOToEntity(dto, entity);
-		entity.setCampeonato(dto.getCampeonato());
-		entity.setEstadio(dto.getEstadio());
-		entity.setTimeCasa(dto.getTimeCasa());
-		entity.setTimeVisitante(dto.getTimeVisitante());
-		entity.setDataHora(dto.getDataHora());
-		entity = repository.save(entity);
-		return new OrganizaCampeonatoDTO(entity);
-	}
-	
-	@Transactional
-	public OrganizaCampeonatoDTO update(Long idOrganizaCampeonato, OrganizaCampeonatoDTO dto) {
-		OrganizaCampeonato entity = repository.getReferenceById(idOrganizaCampeonato);
-		entity.setCampeonato(dto.getCampeonato());
-		entity.setEstadio(dto.getEstadio());
-		entity.setTimeCasa(dto.getTimeCasa());
-		entity.setTimeVisitante(dto.getTimeVisitante());
-		entity.setDataHora(dto.getDataHora());
-		entity = repository.save(entity);
-		return new OrganizaCampeonatoDTO(entity);
-	}
-	
-	public void delete(Long idOrganizaCampeonato) {
-		repository.deleteById(idOrganizaCampeonato);
-	}
-	
-	private void copyDTOToEntity(OrganizaCampeonatoDTO dto, OrganizaCampeonato entity) {		
 		entity.setIdOrganizaCampeonato(dto.getIdOrganizaCampeonato());
+		entity.setCampeonato(dto.getCampeonato());
+		entity.setEstadio(dto.getEstadio());
+		entity.setTimeCasa(dto.getTimeCasa());
+		entity.setTimeVisitante(dto.getTimeVisitante());
+		entity.setDataHora(dto.getDataHora());
 		entity = repository.save(entity);
+		return new OrganizaCampeonatoDTO(entity);
+	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public void delete(Long idOrganizaCampeonato) {
+		if (!repository.existsById(idOrganizaCampeonato)) {
+			throw new ResourceNotFoundException("Recurso não encontrado");
+		}
+		try {
+	        	repository.deleteById(idOrganizaCampeonato);    		
+		}
+	    	catch (DataIntegrityViolationException e) {
+	        	throw new DatabaseException("Falha de integridade referencial");
+	   	}
 	}
 }
