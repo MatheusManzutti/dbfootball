@@ -1,5 +1,7 @@
 package com.devManzutti.DBFootball.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,13 @@ public class OrganizaCampeonatoService {
 		return list.map(x -> new OrganizaCampeonatoDTO(x));
 	}
 	
+	@Transactional(readOnly = true)
+	public OrganizaCampeonatoDTO findById(Long idOrganizaCampeonato) {
+		Optional<OrganizaCampeonato> obj = repository.findById(idOrganizaCampeonato);
+		OrganizaCampeonato entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrado"));
+		return new OrganizaCampeonatoDTO(entity);
+	}
+	
 	@Transactional
 	public OrganizaCampeonatoDTO insert(OrganizaCampeonatoDTO dto) {
 		OrganizaCampeonato entity = new OrganizaCampeonato();
@@ -42,13 +51,13 @@ public class OrganizaCampeonatoService {
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long idOrganizaCampeonato) {
 		if (!repository.existsById(idOrganizaCampeonato)) {
-			throw new ResourceNotFoundException("Recurso não encontrado");
+			throw new ResourceNotFoundException("Id não encontrado: " + idOrganizaCampeonato);
 		}
 		try {
-	        	repository.deleteById(idOrganizaCampeonato);    		
+	        repository.deleteById(idOrganizaCampeonato);    		
 		}
-	    	catch (DataIntegrityViolationException e) {
-	        	throw new DatabaseException("Falha de integridade referencial");
+	    catch (DataIntegrityViolationException e) {
+	        	throw new DatabaseException("Violação de integridade");
 	   	}
 	}
 }

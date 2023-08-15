@@ -31,6 +31,12 @@ public class OrganizaCampeonatoResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping(value = "/{idOrganizaCampeonato}")
+	public ResponseEntity<OrganizaCampeonatoDTO> findById(@PathVariable Long idOrganizaCampeonato) {
+		OrganizaCampeonatoDTO dto = service.findById(idOrganizaCampeonato);
+		return ResponseEntity.ok().body(dto);		
+	}
+	
 	@PostMapping
 	public ResponseEntity<OrganizaCampeonatoDTO> insert(@RequestBody OrganizaCampeonatoDTO dto) {
 		dto = service.insert(dto);
